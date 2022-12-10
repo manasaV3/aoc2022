@@ -5,7 +5,7 @@ MOVES = {
 	'D': (0, -1),
 }
 
-def compute_dir(head, tail):
+def get_dir(head, tail):
 	return 1 if head > tail else -1
 
 
@@ -13,12 +13,12 @@ def compute_tail_position(head, tail):
 	if abs(head[0] - tail[0]) <= 1  and abs(head[1] - tail[1]) <= 1:
 		return tail
 	elif abs(head[0] - tail[0]) == 2:
-		new_tail_x = tail[0] + compute_dir(head[0], tail[0])
-		new_tail_y = tail[1] + (0 if abs(head[1] - tail[1]) == 0 else compute_dir(head[1], tail[1]))
+		new_tail_x = tail[0] + get_dir(head[0], tail[0])
+		new_tail_y = tail[1] + (0 if head[1] == tail[1] else get_dir(head[1], tail[1]))
 		return (new_tail_x, new_tail_y)
 	else:
-		new_tail_x = tail[0] + (0 if abs(head[0] - tail[0]) == 0 else compute_dir(head[0], tail[0]))
-		new_tail_y = tail[1] + compute_dir(head[1], tail[1])
+		new_tail_x = tail[0] + (0 if head[0] == tail[0] else get_dir(head[0], tail[0]))
+		new_tail_y = tail[1] + get_dir(head[1], tail[1])
 		return (new_tail_x, new_tail_y)
 
 
